@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Abigail Zandra V — Web Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101619;
+  --panel:#171f24;
+  --line:#2a343a;
+  --text:#eae6dd;
+  --text-dim:#93a0a6;
+  --amber:#e3a94c;
+  --radius:3px;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --ink:#101619; --panel:#171f24; --line:#2a343a; --text:#eae6dd; --text-dim:#93a0a6;
+  }
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+::selection{background:var(--amber);color:var(--ink);}
+h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;letter-spacing:-0.01em;}
+a{color:inherit;}
+.wrap{max-width:760px;margin:0 auto;padding:0 28px;}
+
+/* NAV */
+nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:10;
+  background:rgba(16,22,25,.88);backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:60px;}
+.brand{font-family:'Fraunces',serif;font-weight:700;font-size:1.15rem;}
+.brand span{color:var(--amber);}
+.navlinks{display:flex;gap:22px;list-style:none;font-size:.92rem;}
+.navlinks a{text-decoration:none;color:var(--text-dim);transition:color .2s;}
+.navlinks a:hover{color:var(--text);}
+.navtoggle{display:none;background:none;border:none;color:var(--text);font-size:1.4rem;cursor:pointer;}
+@media(max-width:640px){
+  .navlinks{position:fixed;top:60px;left:0;right:0;background:var(--panel);flex-direction:column;padding:18px 28px;gap:14px;border-bottom:1px solid var(--line);transform:translateY(-8px);opacity:0;pointer-events:none;transition:.2s;}
+  .navlinks.open{transform:translateY(0);opacity:1;pointer-events:auto;}
+  .navtoggle{display:block;}
+}
+
+/* HERO */
+header.hero{padding:96px 0 72px;border-bottom:1px solid var(--line);}
+.eyebrow{color:var(--amber);font-size:.85rem;margin-bottom:14px;}
+.hero h1{font-size:clamp(2.3rem,6vw,3.6rem);line-height:1.05;max-width:11ch;}
+.hero p{margin-top:20px;color:var(--text-dim);max-width:46ch;font-size:1.05rem;}
+.hero-cta{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;}
+.btn{
+  display:inline-block;padding:12px 22px;border-radius:var(--radius);
+  text-decoration:none;font-size:.92rem;font-weight:500;transition:transform .15s, background .15s;
+}
+.btn-primary{background:var(--amber);color:var(--ink);}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-ghost{border:1px solid var(--line);color:var(--text);}
+.btn-ghost:hover{border-color:var(--text-dim);}
+
+section{padding:64px 0;border-bottom:1px solid var(--line);}
+.label{color:var(--amber);font-size:.85rem;margin-bottom:10px;}
+section h2{font-size:1.9rem;margin-bottom:28px;max-width:16ch;}
+
+/* SKILLS */
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;}
+.skill{
+  border:1px solid var(--line);padding:16px;border-radius:var(--radius);
+  font-size:.92rem;color:var(--text-dim);
+}
+.skill b{display:block;color:var(--text);font-family:'Fraunces',serif;font-size:1.05rem;margin-bottom:6px;}
+.bar{height:4px;background:var(--line);border-radius:2px;margin-top:10px;overflow:hidden;}
+.bar i{display:block;height:100%;background:var(--amber);border-radius:2px;transform-origin:left;transform:scaleX(0);animation:fill 1s ease forwards;animation-delay:.2s;}
+@keyframes fill{to{transform:scaleX(1);}}
+
+/* PROJECTS */
+.proj{display:flex;flex-direction:column;gap:22px;}
+.card{
+  border:1px solid var(--line);border-radius:var(--radius);padding:22px;
+  transition:border-color .2s, transform .2s;
+}
+.card:hover{border-color:var(--amber);transform:translateY(-3px);}
+.card-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.card h3{font-size:1.2rem;}
+.tag-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.tag{font-size:.78rem;color:var(--text-dim);border:1px solid var(--line);padding:3px 9px;border-radius:20px;}
+.card p{color:var(--text-dim);margin-top:12px;font-size:.95rem;}
+.card-links{margin-top:14px;display:flex;gap:16px;font-size:.9rem;}
+.card-links a{color:var(--amber);text-decoration:none;}
+.card-links a:hover{text-decoration:underline;}
+
+/* ACHIEVEMENTS */
+.ach-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.ach-list li{
+  display:flex;gap:18px;padding:18px 0;border-top:1px solid var(--line);
+}
+.ach-list li:first-child{border-top:none;}
+.ach-year{color:var(--amber);font-family:'Fraunces',serif;min-width:56px;}
+.ach-body b{display:block;margin-bottom:4px;}
+.ach-body span{color:var(--text-dim);font-size:.92rem;}
+
+/* CONTACT */
+.contact-grid{display:flex;flex-wrap:wrap;gap:14px;}
+.contact-item{
+  flex:1 1 200px;border:1px solid var(--line);border-radius:var(--radius);
+  padding:18px;text-decoration:none;transition:border-color .2s;
+}
+.contact-item:hover{border-color:var(--amber);}
+.contact-item b{display:block;font-family:'Fraunces',serif;margin-bottom:4px;}
+.contact-item span{color:var(--text-dim);font-size:.88rem;}
+
+footer{padding:32px 0 calc(32px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--text-dim);font-size:.85rem;}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Abigail <span>Zandra V</span></div>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="navtoggle" id="navtoggle" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <div class="eyebrow">First-year student · First semester</div>
+  <h1>New to code. Already building.</h1>
+  <p>I'm in my first semester of a Computer Science degree, learning HTML, CSS and JavaScript the way I learn best — by building real, working things instead of just following along. Chennai, India.</p>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#projects">See my projects</a>
+    <a class="btn btn-ghost" href="#contact">Get in touch</a>
+  </div>
+</header>
+
+<section id="about" class="wrap">
+  <div class="label">About me</div>
+  <h2>A first-semester student learning by building.</h2>
+  <p style="color:var(--text-dim);max-width:56ch;">I picked up coding this semester, so I'm still early in the journey — but I'd rather build something real than just read about it. Every project here, including this portfolio and the food ordering app, is something I put together from scratch to actually understand how the pieces fit: layout, interactivity, and code I can still make sense of later. Outside class, I'm usually watching a tutorial, poking around a site's devtools to see how something works, or asking one too many questions online.</p>
+</section>
+
+<section id="skills" class="wrap">
+  <div class="label">Skills</div>
+  <h2>What I've picked up so far</h2>
+  <div class="skill-grid">
+    <div class="skill"><b>HTML5</b>Semantic structure, forms, accessibility basics<div class="bar"><i style="width:85%"></i></div></div>
+    <div class="skill"><b>CSS3</b>Flexbox, Grid, responsive layouts, animations<div class="bar"><i style="width:80%"></i></div></div>
+    <div class="skill"><b>JavaScript</b>DOM manipulation, events, basic logic<div class="bar"><i style="width:70%"></i></div></div>
+    <div class="skill"><b>Git & GitHub</b>Version control, branches, pull requests<div class="bar"><i style="width:65%"></i></div></div>
+    <div class="skill"><b>UI/UX Basics</b>Wireframing, spacing, color, typography<div class="bar"><i style="width:60%"></i></div></div>
+    <div class="skill"><b>Responsive Design</b>Mobile-first thinking, media queries<div class="bar"><i style="width:75%"></i></div></div>
+  </div>
+</section>
+
+<section id="projects" class="wrap">
+  <div class="label">Projects</div>
+  <h2>Things I've built this year</h2>
+  <div class="proj">
+    <div class="card">
+      <div class="card-top"><h3>Foodie — Ordering Interface</h3></div>
+      <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+      <p>A responsive food ordering screen with categories, a live cart and running total — built to practice DOM updates and state without a framework.</p>
+      <div class="card-links"><a href="#">Live demo →</a><a href="#">Source →</a></div>
+    </div>
+    <div class="card">
+      <div class="card-top"><h3>Weather Now</h3></div>
+      <div class="tag-row"><span class="tag">JavaScript</span><span class="tag">API</span></div>
+      <p>A small weather lookup tool using a public API, with a loading state and graceful error handling for bad city names.</p>
+      <div class="card-links"><a href="#">Live demo →</a><a href="#">Source →</a></div>
+    </div>
+    <div class="card">
+      <div class="card-top"><h3>Habit Tracker</h3></div>
+      <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">LocalStorage</span></div>
+      <p>A daily habit checklist that remembers your progress between visits, styled with a soft card layout and satisfying check animation.</p>
+      <div class="card-links"><a href="#">Live demo →</a><a href="#">Source →</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements" class="wrap">
+  <div class="label">Achievements</div>
+  <h2>A few milestones along the way</h2>
+  <ul class="ach-list">
+    <li><span class="ach-year">2026</span><div class="ach-body"><b>Runner-up, college hackathon</b><span>Built a campus event-finder app with a team of three in 24 hours.</span></div></li>
+    <li><span class="ach-year">2026</span><div class="ach-body"><b>freeCodeCamp Responsive Web Design</b><span>Completed the full certification covering HTML, CSS and accessibility.</span></div></li>
+    <li><span class="ach-year">2025</span><div class="ach-body"><b>Started #100DaysOfCode</b><span>Shared daily coding progress and small builds publicly for accountability.</span></div></li>
+  </ul>
+</section>
+
+<section id="contact" class="wrap">
+  <div class="label">Contact</div>
+  <h2>Let's talk</h2>
+  <div class="contact-grid">
+    <a class="contact-item" href="mailto:abigail.zandrav@example.com"><b>Email</b><span>abigail.zandrav@example.com</span></a>
+    <a class="contact-item" href="#"><b>GitHub</b><span>github.com/abigailzandrav</span></a>
+    <a class="contact-item" href="#"><b>LinkedIn</b><span>in/abigailzandrav</span></a>
+  </div>
+</section>
+
+<footer>Designed & built by Abigail Zandra V · 2026</footer>
+
+<script>
+document.getElementById('navtoggle').addEventListener('click',()=>{
+  document.getElementById('navlinks').classList.toggle('open');
+});
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>{
+  document.getElementById('navlinks').classList.remove('open');
+}));
+</script>
+</body>
+</html>
